@@ -1,3 +1,8 @@
+print("Reading Tracker 1.0 - by Doa Roys")
+book_file = open("books.csv", "r")
+book_details = book_file.readlines()
+book_file.close()
+print("Loaded", len(book_details), "books")
 
 def display_menu():
     print("Menu:")
@@ -8,6 +13,9 @@ def display_menu():
 
 
 def read_book():
+    book_file = open("books.csv", "r")
+    book_details = book_file.readlines()
+    book_file.close()
     for i, book in enumerate(book_details):
         title, author, pages, status = book.split(",")
         if status == "r":
@@ -39,23 +47,26 @@ def add_book():
             print("Invalid input; enter a valid number.")
 
     print(f"{title} by {author}, ({pages} pages) added to Reading Tracker")
-    book_file.writelines(f"*{title}, {author}, {pages}")
+    book_file = open("books.csv","w")
+    book_file.writelines(f"{title}, {author}, {pages},r")
+    book_file.close()
     display_menu()
+    user_choice = input("")
 
-# def quit_tracker():
+def quit_tracker():
+    book_file = open("books.csv", "r")
+    book_details = book_file.readlines()
+    book_file.close()
+    print(f" {len(book_details)} books saved to books.csv")
+    print("So many books, so little time. Frank Zappa")
 
 
 
-print("Reading Tracker 1.0 - by Doa Roys")
-book_file = open("books.csv", "r")
-book_details = book_file.readlines()
-book_file.close()
-print("Loaded", len(book_details), "books")
 display_menu()
 user_choice = input("")
 if user_choice.upper() == "L":
     read_book()
 elif user_choice.upper() == "A":
     add_book()
-# elif user_choice.upper() == "Q":
-#     quit_tracker()
+elif user_choice.upper() == "Q":
+    quit_tracker()
