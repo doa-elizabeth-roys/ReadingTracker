@@ -59,8 +59,8 @@ def add_book():
     # book_file.close()
     # Add book to book_details list in memory
     book_details.append(f"{title}, {author}, {pages},r\n")
-    display_menu()
-    user_choice = input("")
+
+
 
 def quit_tracker():
     with open("books.csv", "w") as book_file:
@@ -105,16 +105,18 @@ def mark_book():
             print("Invalid input; enter a valid number")
 
 
+while True:
+    display_menu()
+    user_choice = input("").upper()
 
-
-
-display_menu()
-user_choice = input("")
-if user_choice.upper() == "L":
-    read_book()
-elif user_choice.upper() == "A":
-    add_book()
-elif user_choice.upper() == "Q":
-    quit_tracker()
-elif user_choice.upper() == "M":
-    mark_book()
+    if user_choice == "L":
+        read_book()
+    elif user_choice == "A":
+        add_book()
+    elif user_choice == "Q":
+        quit_tracker()
+        break
+    elif user_choice == "M":
+        mark_book()
+    else:
+        print("Invalid menu choice")
