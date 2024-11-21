@@ -63,11 +63,12 @@ def add_book():
     user_choice = input("")
 
 def quit_tracker():
-    book_file = open("books.csv", "r")
-    book_details = book_file.readlines()
-    book_file.close()
-    print(f" {len(book_details)} books saved to books.csv")
+    with open("books.csv", "w") as book_file:
+        book_file.write("\n".join(book_details))
+    print(f"{len(book_details)} books saved to books.csv")
     print("So many books, so little time. Frank Zappa")
+
+
 def mark_book():
     # global pages_to_read, book_details
     read_book()
